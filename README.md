@@ -19,7 +19,7 @@ Mi objetivo es crear soluciones inteligentes que unan la IA y la automatización
 - `projects.json` → Plantilla de proyectos existentes (ejemplos de placeholder)  
 - `upcoming.json` → Plantilla de proyectos próximos (ejemplos de placeholder)  
 - `styles.css` → Estilos personalizados  
-- `script.js` → Lógica de carga, búsqueda y renderizado de proyectos  
+- `projects.js` → Lógica de carga, búsqueda y renderizado de proyectos  
 
 ## 📌 Nota sobre los proyectos
 Actualmente no tengo proyectos publicados en producción.  
