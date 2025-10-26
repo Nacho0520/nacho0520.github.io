@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Proyectos de Ignacio Hemmings - IA y Desarrollo">
+    <title>Proyectos - Ignacio Hemmings</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="projects.html" class="active">Proyectos</a></li>
+            <li><a href="contact.html">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section class="hero">
+            <h1>Mis Proyectos</h1>
+            <p class="subtitle">Explorando la intersección entre IA y desarrollo</p>
+        </section>
+
+        <div class="search-bar">
+            <input 
+                type="text" 
+                id="searchInput" 
+                placeholder="🔍 Buscar proyectos por título, descripción o tags..."
+                autocomplete="off"
+            >
+        </div>
+
+        <div class="tabs">
+            <button class="tab-button active" data-tab="ia">IA</button>
+            <button class="tab-button" data-tab="otros">Otros</button>
+            <button class="tab-button" data-tab="proximos">Próximos</button>
+        </div>
+
+        <div id="projectsContainer" class="projects-grid">
+            <div class="loading">
+                <p>Cargando proyectos...</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Ignacio Hemmings. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="projects.js"></script>
+</body>
+</html>

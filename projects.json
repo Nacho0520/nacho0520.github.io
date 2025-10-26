@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "title": "Chatbot Inteligente con IA",
+    "description": "Sistema de chatbot avanzado usando procesamiento de lenguaje natural para automatizar atención al cliente",
+    "category": "ia",
+    "tags": ["NLP", "Machine Learning", "Python", "OpenAI"],
+    "demo": "https://demo-chatbot.example.com",
+    "repo": "https://github.com/Nacho0520/chatbot-ia"
+  },
+  {
+    "id": 2,
+    "title": "Análisis Predictivo de Datos",
+    "description": "Modelo de machine learning para predicción de tendencias usando datos históricos",
+    "category": "ia",
+    "tags": ["Machine Learning", "Python", "TensorFlow", "Data Science"],
+    "demo": "https://demo-analytics.example.com",
+    "repo": "https://github.com/Nacho0520/predictive-analytics"
+  },
+  {
+    "id": 3,
+    "title": "Automatización de Procesos",
+    "description": "Framework para automatización de tareas repetitivas usando scripts inteligentes",
+    "category": "ia",
+    "tags": ["Automation", "Python", "RPA", "AI"],
+    "demo": "",
+    "repo": "https://github.com/Nacho0520/automation-framework"
+  },
+  {
+    "id": 4,
+    "title": "Gestor de Tareas Web",
+    "description": "Aplicación web moderna para gestión de tareas y proyectos personales",
+    "category": "otros",
+    "tags": ["JavaScript", "React", "Node.js", "MongoDB"],
+    "demo": "https://demo-tasks.example.com",
+    "repo": "https://github.com/Nacho0520/task-manager"
+  },
+  {
+    "id": 5,
+    "title": "Portfolio Personal",
+    "description": "Sitio web portfolio moderno y responsive con modo oscuro",
+    "category": "otros",
+    "tags": ["HTML", "CSS", "JavaScript", "GitHub Pages"],
+    "demo": "https://nacho0520.github.io/ignaciohemmings",
+    "repo": "https://github.com/Nacho0520/ignaciohemmings"
+  },
+  {
+    "id": 6,
+    "title": "API REST con Node.js",
+    "description": "API RESTful escalable para servicios backend",
+    "category": "otros",
+    "tags": ["Node.js", "Express", "API", "MongoDB"],
+    "demo": "",
+    "repo": "https://github.com/Nacho0520/rest-api"
+  }
+]

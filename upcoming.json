@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "title": "Sistema de Reconocimiento de Imágenes",
+    "description": "Aplicación de visión por computadora para clasificación automática de imágenes",
+    "category": "proximos",
+    "tags": ["Computer Vision", "Deep Learning", "Python", "PyTorch"],
+    "demo": "",
+    "repo": ""
+  },
+  {
+    "id": 2,
+    "title": "Asistente Virtual con IA",
+    "description": "Asistente personal inteligente con capacidades de voz y automatización",
+    "category": "proximos",
+    "tags": ["AI", "Voice Recognition", "Automation", "Python"],
+    "demo": "",
+    "repo": ""
+  },
+  {
+    "id": 3,
+    "title": "Plataforma de E-learning",
+    "description": "Sistema completo de gestión de cursos online con seguimiento de progreso",
+    "category": "proximos",
+    "tags": ["React", "Node.js", "MongoDB", "WebRTC"],
+    "demo": "",
+    "repo": ""
+  }
+]
