@@ -1,56 +1,56 @@
 [
   {
     "id": 1,
-    "title": "Chatbot Inteligente con IA",
-    "description": "Sistema de chatbot avanzado usando procesamiento de lenguaje natural para automatizar atención al cliente",
+    "title": "Ejemplo — Chatbot con IA",
+    "description": "Plantilla de proyecto IA (aún sin lanzar).",
     "category": "ia",
-    "tags": ["NLP", "Machine Learning", "Python", "OpenAI"],
-    "demo": "https://demo-chatbot.example.com",
-    "repo": "https://github.com/Nacho0520/chatbot-ia"
+    "tags": ["Ejemplo", "Machine Learning", "Python", "OpenAI"],
+    "demo": "",
+    "repo": ""
   },
   {
     "id": 2,
-    "title": "Análisis Predictivo de Datos",
-    "description": "Modelo de machine learning para predicción de tendencias usando datos históricos",
+    "title": "Ejemplo — Predicción de tendencias",
+    "description": "Modelo de ML para predicciones (placeholder sin lanzar).",
     "category": "ia",
-    "tags": ["Machine Learning", "Python", "TensorFlow", "Data Science"],
-    "demo": "https://demo-analytics.example.com",
-    "repo": "https://github.com/Nacho0520/predictive-analytics"
+    "tags": ["Ejemplo", "Python", "TensorFlow", "Data Science"],
+    "demo": "",
+    "repo": ""
   },
   {
     "id": 3,
-    "title": "Automatización de Procesos",
-    "description": "Framework para automatización de tareas repetitivas usando scripts inteligentes",
+    "title": "Ejemplo — Framework de automatización",
+    "description": "Estructura base para automatizaciones inteligentes (placeholder).",
     "category": "ia",
-    "tags": ["Automation", "Python", "RPA", "AI"],
+    "tags": ["Ejemplo", "Automation", "Python", "RPA"],
     "demo": "",
-    "repo": "https://github.com/Nacho0520/automation-framework"
+    "repo": ""
   },
   {
     "id": 4,
-    "title": "Gestor de Tareas Web",
-    "description": "Aplicación web moderna para gestión de tareas y proyectos personales",
+    "title": "Ejemplo — Gestor de tareas",
+    "description": "Aplicación web de gestión de proyectos (aún no publicada).",
     "category": "otros",
-    "tags": ["JavaScript", "React", "Node.js", "MongoDB"],
-    "demo": "https://demo-tasks.example.com",
-    "repo": "https://github.com/Nacho0520/task-manager"
+    "tags": ["Ejemplo", "JavaScript", "React", "Node.js"],
+    "demo": "",
+    "repo": ""
   },
   {
     "id": 5,
-    "title": "Portfolio Personal",
-    "description": "Sitio web portfolio moderno y responsive con modo oscuro",
+    "title": "Ejemplo — Portfolio Personal",
+    "description": "Plantilla de portfolio responsive con modo oscuro (placeholder).",
     "category": "otros",
-    "tags": ["HTML", "CSS", "JavaScript", "GitHub Pages"],
-    "demo": "https://nacho0520.github.io/ignaciohemmings",
-    "repo": "https://github.com/Nacho0520/ignaciohemmings"
+    "tags": ["Ejemplo", "HTML", "CSS", "JavaScript"],
+    "demo": "",
+    "repo": ""
   },
   {
     "id": 6,
-    "title": "API REST con Node.js",
-    "description": "API RESTful escalable para servicios backend",
+    "title": "Ejemplo — API REST",
+    "description": "Estructura de API RESTful escalable (aún sin lanzar).",
     "category": "otros",
-    "tags": ["Node.js", "Express", "API", "MongoDB"],
+    "tags": ["Ejemplo", "Node.js", "Express", "API"],
     "demo": "",
-    "repo": "https://github.com/Nacho0520/rest-api"
+    "repo": ""
   }
 ]
