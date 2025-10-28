@@ -60,6 +60,10 @@ nav a:hover,
 nav a.active { 
   color: var(--accent-color); 
   background-color: var(--surface-hover); 
+}
+
+.nav-link.active {
+  font-weight: 700;
 } 
 
 /* Container */ 
