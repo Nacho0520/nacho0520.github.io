@@ -32,26 +32,17 @@
             link.classList.remove('active');
             
             // Caso 1: Coincidencia exacta de ruta
-            // Por ejemplo: /index.html coincide con href="/index.html"
-            if (currentPath === href || currentPath === '/' + href) {
+            if (currentPath === href) {
                 link.classList.add('active');
             }
-            // Caso 2: Si estamos en la raíz "/" o "/index.html", marcar "Inicio" como activo
-            else if ((currentPath === '/' || currentPath === '/index.html') && 
-                     (href === '/index.html' || href === 'index.html')) {
+            // Caso 2: Si estamos en la raíz "/" y el enlace es a index.html
+            else if (currentPath === '/' && (href === '/index.html' || href === 'index.html')) {
                 link.classList.add('active');
             }
             // Caso 3: Coincidencia por carpeta (para futuras subcarpetas como /blog/)
-            // Si la ruta actual empieza con el href (sin .html), marcar como activo
+            // Si el href termina en '/' y la ruta actual está dentro de esa carpeta
             else if (href.endsWith('/') && currentPath.startsWith(href)) {
                 link.classList.add('active');
-            }
-            // Caso 4: Para subcarpetas, si estamos en /blog/algo.html y el enlace es /blog/
-            else if (!href.endsWith('.html') && href.endsWith('/')) {
-                const folderPath = href.replace(/\/$/, '');
-                if (currentPath.startsWith(folderPath + '/')) {
-                    link.classList.add('active');
-                }
             }
         });
     }
