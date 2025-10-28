@@ -35,8 +35,10 @@
             if (currentPath === href) {
                 link.classList.add('active');
             }
-            // Caso 2: Si estamos en la raíz "/" y el enlace es a index.html
-            else if (currentPath === '/' && (href === '/index.html' || href === 'index.html')) {
+            // Caso 2: Detección bidireccional de página de inicio
+            // Si estamos en "/" y el enlace es "/index.html", o viceversa
+            else if ((currentPath === '/' && href === '/index.html') || 
+                     (currentPath === '/index.html' && href === '/')) {
                 link.classList.add('active');
             }
             // Caso 3: Coincidencia por carpeta (para futuras subcarpetas como /blog/)
