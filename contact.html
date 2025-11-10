@@ -6,6 +6,23 @@
     <meta name="description" content="Contacto - Ignacio Hemmings">
     <title>Contacto - Ignacio Hemmings</title>
     <link rel="stylesheet" href="styles.css">
+        <style>
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+        .form-group input, .form-group button { padding: 10px; border-radius: 4px; border: 1px solid #ddd; width: 100%; box-sizing: border-box; }
+        #slots-container button {
+            width: auto;
+            margin: 5px;
+            background-color: #f0f0f0;
+            cursor: pointer;
+            color: #333;
+        }
+        #slots-container button.selected {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
     <nav>
@@ -43,37 +60,45 @@
                 </a>
             </div>
         </div>
-        
-        <section class="form-section" style="margin-top: 4rem; padding: 2rem; border: 1px solid #ccc; border-radius: 8px;">
-            <h2 style="font-size: 2rem; margin-bottom: 1.5rem;">Formulario de Contacto Directo</h2>
-            <form id="contactForm">
-                <div class="form-group" style="margin-bottom: 1rem;">
-                    <label for="name" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Tu Nombre:</label>
-                    <input type="text" id="name" name="name" required 
-                           style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;">
-                </div>
 
-                <div class="form-group" style="margin-bottom: 1rem;">
-                    <label for="email" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Tu Email:</label>
-                    <input type="email" id="email" name="email" required 
-                           style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;">
-                </div>
+                <section id="reserva-section" style="margin-top: 4rem; padding: 2rem; border: 1px solid #007bff; border-radius: 8px;">
+            <h2 style="font-size: 2rem; margin-bottom: 1.5rem; color: #007bff;">Agenda una Cita por Llamada</h2>
+            <p>Selecciona una fecha y una hora disponible para tu llamada de consulta.</p>
 
-                <div class="form-group" style="margin-bottom: 1rem;">
-                    <label for="message" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Tu Mensaje:</label>
-                    <textarea id="message" name="message" rows="5" required 
-                              style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; resize: vertical;"></textarea>
-                </div>
+            <form id="bookingForm">
+                                <div class="form-group">
+                    <label for="bookingDate">Fecha Deseada:</label>
+                    <input type="date" id="bookingDate" required>
+                    <button type="button" onclick="checkAvailability()" style="margin-top: 10px; background-color: #28a745; color: white;">
+                        Consultar Horas Disponibles
+                    </button>
+                </div>
 
-                <button type="submit" 
-                        style="background-color: #007bff; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; font-size: 1rem;">
-                    Enviar Mensaje
-                </button>
-                
-                <p id="formMessage" style="margin-top: 1rem; color: green;"></p>
-            </form>
-        </section>
-                <section class="hero" style="margin-top: 4rem;">
+                                <div class="form-group">
+                    <label>Horas Disponibles:</label>
+                    <div id="slots-container" style="display: flex; flex-wrap: wrap;">
+                                                <p id="slots-message" style="color: gray;">Selecciona una fecha para ver los huecos.</p>
+                    </div>
+                    <input type="hidden" id="selectedDateTime" name="dateTime" required>
+                </div>
+
+                                <div id="client-data-section" style="margin-top: 20px; border-top: 1px solid #eee; padding-top: 20px;">
+                    <label for="clientName">Tu Nombre:</label>
+                    <input type="text" id="clientName" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="clientEmail">Tu Email:</label>
+                    <input type="email" id="clientEmail" name="email" required>
+                </div>
+
+                <button type="submit" style="background-color: #007bff; color: white; margin-top: 15px;">
+                    Confirmar Reserva
+                </button>
+
+                <p id="reservaMessage" style="margin-top: 15px; font-weight: bold;"></p>
+            </form>
+        </section>
+                <section class="hero" style="margin-top: 4rem;">
             <h2 style="font-size: 2rem; margin-bottom: 1rem;">¿En qué puedo ayudarte?</h2>
             <p>
                 Ya sea que necesites diseñar un asistente con IA, automatizar flujos y tareas repetitivas, 
@@ -90,5 +115,137 @@
     <footer>
         <p>&copy; 2025 Ignacio Hemmings. Todos los derechos reservados.</p>
     </footer>
+
+        <script>
+        // !!! REEMPLAZA ESTAS URLs con las Production URLs de tus Webhooks de N8N !!!
+        const CONSULTA_URL = 'https://[TU_URL_BASE]/webhook/[NOMBRE_DEL_WEBHOOK_CONSULTA]'; 
+        const RESERVA_URL = 'https://[TU_URL_BASE]/webhook/[NOMBRE_DEL_WEBHOOK_RESERVA]'; 
+
+        const form = document.getElementById('bookingForm');
+        const slotsContainer = document.getElementById('slots-container');
+        const selectedDateTimeInput = document.getElementById('selectedDateTime');
+        const reservaMessage = document.getElementById('reservaMessage');
+
+        // --- FUNCIONES PRINCIPALES ---
+
+        /**
+         * 1. Llama al Flujo 1: Consulta de Disponibilidad (Método GET).
+         */
+        async function checkAvailability() {
+            const dateInput = document.getElementById('bookingDate').value;
+            if (!dateInput) {
+                alert('Por favor, selecciona una fecha.');
+                return;
+            }
+
+            slotsContainer.innerHTML = '<p style="color: orange;">Consultando disponibilidad...</p>';
+            reservaMessage.textContent = ''; // Limpiar mensaje anterior
+
+            try {
+                // Llamada al webhook de N8N con la fecha en el parámetro 'date'
+                const response = await fetch(`${CONSULTA_URL}?date=${dateInput}`);
+                const data = await response.json();
+
+                // La respuesta de N8N está en data[0].json.data (o similar, depende de la opción Aggregate)
+                // Simplificamos: buscamos el array de horas disponibles.
+                
+                // Intentamos obtener el array de horas (asumiendo que N8N devolvió el JSON que vimos en la prueba)
+                const availableSlots = data[0]?.json?.data || []; 
+                
+                renderSlots(availableSlots);
+
+            } catch (error) {
+                slotsContainer.innerHTML = '<p style="color: red;">Error al consultar: El servicio no responde o está mal configurado.</p>';
+                console.error('Error fetching availability:', error);
+            }
+        }
+
+        /**
+         * 2. Renderiza los botones de hora después de la consulta.
+         */
+        function renderSlots(slots) {
+            slotsContainer.innerHTML = '';
+            if (slots.length === 0) {
+                slotsContainer.innerHTML = '<p style="color: #007bff;">No hay huecos disponibles para esta fecha.</p>';
+                return;
+            }
+
+            slots.forEach(slot => {
+                const button = document.createElement('button');
+                button.textContent = slot.time; // Muestra solo la hora
+                button.setAttribute('data-datetime', `${slot.date}T${slot.time}:00.000+01:00`); // Formato ISO para N8N
+
+                button.type = 'button';
+                button.onclick = () => selectSlot(button);
+                slotsContainer.appendChild(button);
+            });
+        }
+
+        /**
+         * 3. Maneja la selección de un hueco y actualiza el campo oculto.
+         */
+        function selectSlot(selectedButton) {
+            // Deseleccionar todos los botones
+            document.querySelectorAll('#slots-container button').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+
+            // Seleccionar el botón actual
+            selectedButton.classList.add('selected');
+
+            // Guardar el valor ISO de la fecha y hora en el input oculto para el POST
+            selectedDateTimeInput.value = selectedButton.getAttribute('data-datetime');
+        }
+
+        /**
+         * 4. Maneja el envío del formulario al Flujo 2: Reserva (Método POST).
+         */
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            reservaMessage.textContent = 'Procesando reserva...';
+            reservaMessage.style.color = 'orange';
+
+            if (!selectedDateTimeInput.value) {
+                alert('Por favor, selecciona una hora disponible.');
+                reservaMessage.textContent = '';
+                return;
+            }
+            
+            // Recoger los datos finales
+            const clientName = document.getElementById('clientName').value;
+            const clientEmail = document.getElementById('clientEmail').value;
+            const dateTime = selectedDateTimeInput.value;
+
+            try {
+                const response = await fetch(RESERVA_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    // Enviamos los datos como JSON al webhook de N8N
+                    body: JSON.stringify({ 
+                        name: clientName,
+                        email: clientEmail,
+                        dateTime: dateTime 
+                    })
+                });
+                
+                const result = await response.json();
+
+                if (response.ok && result.status === 'success') {
+                    reservaMessage.textContent = '¡Cita confirmada! Revisa tu email.';
+                    reservaMessage.style.color = 'green';
+                    form.reset(); // Limpiar formulario
+                } else {
+                    throw new Error(result.message || 'Error desconocido.');
+                }
+
+            } catch (error) {
+                reservaMessage.textContent = `Fallo en la reserva: ${error.message}`;
+                reservaMessage.style.color = 'red';
+                console.error('Error durante la reserva:', error);
+            }
+        });
+    </script>
 </body>
 </html>
